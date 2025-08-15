@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Você Dominante em TI</title>
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:700,400|Roboto:400,700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --main-bg: linear-gradient(120deg, #f3e7e9 0%, #c9a5dd 100%);
+      --primary: #b36ae2;
+      --secondary: #ffb7ce;
+      --accent: #f67280;
+      --white: #fff;
+      --gray: #f7f7f7;
+      --dark: #5e548e;
+      --radius: 16px;
+    }
+    body {
+      margin: 0;
+      font-family: 'Roboto', Arial, sans-serif;
+      background: var(--main-bg);
+      color: var(--dark);
+      min-height: 100vh;
+    }
+    header {
+      background: var(--white);
+      padding: 2rem 0 1rem 0;
+      text-align: center;
+      box-shadow: 0 4px 16px rgba(179,106,226,0.15);
+      position: relative;
+      border-bottom-left-radius: var(--radius);
+      border-bottom-right-radius: var(--radius);
+    }
+    .header-images {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1.2em;
+      margin-bottom: 0.7em;
+      flex-wrap: wrap;
+    }
+    .header-images img {
+      width: 70px;
+      height: 70px;
+      object-fit: contain;
+      border-radius: 50%;
+      box-shadow: 0 2px 8px var(--primary);
+      border: 3px solid var(--secondary);
+      background: var(--gray);
+      margin-bottom: 0.5em;
+    }
+    header h1 {
+      font-family: 'Montserrat', Arial, sans-serif;
+      font-size: 2.6rem;
+      color: var(--primary);
+      letter-spacing: 2px;
+      margin: 0;
+      text-shadow: 0 2px 8px var(--secondary);
+    }
+    header p {
+      color: var(--accent);
+      font-size: 1.2rem;
+      margin: 0.5rem 0 0 0;
+      font-weight: 400;
+      letter-spacing: 1px;
+    }
+    nav {
+      background: var(--primary);
+      padding: 0.5rem 0;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(179,106,226,0.08);
+      border-bottom-left-radius: var(--radius);
+      border-bottom-right-radius: var(--radius);
+    }
+    nav button {
+      background: none;
+      border: none;
+      color: var(--white);
+      cursor: pointer;
+      margin: 0 1.2em;
+      font-weight: 700;
+      font-size: 1.08em;
+      letter-spacing: 0.5px;
+      padding: 8px 16px;
+      border-radius: var(--radius);
+      transition: background 0.2s, color 0.2s;
+      outline: none;
+    }
+    nav button:hover, nav button.active {
+      background: var(--secondary);
+      color: var(--dark);
+    }
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2em 1em 2em 1em;
+    }
+    section {
+      display: none;
+      margin-bottom: 2.5em;
+      background: var(--white);
+      border-radius: var(--radius);
+      box-shadow: 0 2px 12px rgba(179,106,226,0.08);
+      padding: 2em 1.5em;
+      animation: fadeIn 0.7s;
+    }
+    section.active {
+      display: block;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px);}
+      to { opacity: 1; transform: translateY(0);}
+    }
+    section h2 {
+      color: var(--primary);
+      font-family: 'Montserrat', Arial, sans-serif;
+      font-size: 2em;
+      margin-top: 0;
+      margin-bottom: 0.6em;
+      text-shadow: 0 2px 8px var(--secondary);
+    }
+    .topics-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+      gap: 1.5em;
+      margin-bottom: 1.4em;
+    }
+    .topic-card {
+      background: var(--secondary);
+      padding: 1.2em 1em 1.5em 1em;
+      border-radius: var(--radius);
+      box-shadow: 0 2px 8px #f3e7e9;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      color: var(--dark);
+      font-family: 'Roboto', Arial, sans-serif;
+      margin-bottom: 0.5em;
+    }
+    .topic-card h3 {
+      color: var(--accent);
+      margin: 0 0 0.5em 0;
+      font-size: 1.13em;
+      font-family: 'Montserrat', Arial, sans-serif;
+      letter-spacing: 0.5px;
+    }
+    .topic-card p {
+      margin: 0 0 0.7em 0;
+      font-size: 0.99em;
+    }
+    .topic-links {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4em;
+    }
+    .topic-links a {
+      background: var(--primary);
+      color: var(--white);
+      padding: 7px 16px;
+      border-radius: var(--radius);
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1.01em;
+      transition: background 0.2s, color 0.2s;
+      margin-bottom: 0.2em;
+      text-align: center;
+      box-shadow: 0 2px 8px var(--accent);
+    }
+    .topic-links a:hover {
+      background: var(--accent);
+      color: var(--white);
+    }
+    .tool-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.2em;
+    }
+    .tool-card {
+      background: var(--secondary);
+      padding: 1.1em 1em 1.1em 1em;
+      border-radius: var(--radius);
+      min-width: 220px;
+      box-shadow: 0 2px 8px #f3e7e9;
+      flex: 1 0 220px;
+      color: var(--dark);
+      font-family: 'Roboto', Arial, sans-serif;
+      margin-bottom: 0.5em;
+    }
+    .tool-card h4 {
+      color: var(--primary);
+      margin: 0 0 0.5em 0;
+      font-size: 1em;
+      font-family: 'Montserrat', Arial, sans-serif;
+    }
+    .tool-card a {
+      color: var(--accent);
+      font-weight: 700;
+      text-decoration: underline;
+    }
+    .tool-card ul {
+      margin: 0.5em 0 0 1em;
+      padding: 0;
+      font-size: 0.97em;
+    }
+    .tool-card ul li {
+      margin-bottom: 0.4em;
+    }
+    footer {
+      background: var(--primary);
+      color: var(--white);
+      text-align: center;
+      font-size: 1.1em;
+      padding: 1.1em 0 1em 0;
+      border-radius: var(--radius) var(--radius) 0 0;
+      letter-spacing: 1px;
+      margin-top: 2em;
+      font-family: 'Montserrat', Arial, sans-serif;
+      box-shadow: 0 -2px 8px var(--secondary);
+    }
+    .contact-social {
+      margin-top: 1em;
+      font-size: 1.15em;
+    }
+    .contact-social a {
+      color: var(--accent);
+      font-weight: bold;
+      text-decoration: none;
+      margin-left: 0.3em;
+    }
+    .contact-social a:hover {
+      text-decoration: underline;
+      color: var(--primary);
+    }
+    @media (max-width: 700px) {
+      main { padding: 1em 0.5em;}
+      section{ padding: 1em 0.5em;}
+      .tool-card, .topic-card { min-width: 95vw; }
+      .topics-list{ grid-template-columns: 1fr;}
+      .header-images img{width:40px;height:40px;}
+      .topic-links a { font-size: 0.97em;}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-images">
+      <img src="https://cdn-icons-png.flaticon.com/512/2721/2721224.png" alt="Notebook">
+      <img src="https://cdn-icons-png.flaticon.com/512/1159/1159633.png" alt="Rede">
+      <img src="https://cdn-icons-png.flaticon.com/512/732/732212.png" alt="HTML">
+      <img src="https://cdn-icons-png.flaticon.com/512/919/919826.png" alt="CSS">
+      <img src="https://cdn-icons-png.flaticon.com/512/919/919836.png" alt="Python">
+      <img src="https://cdn-icons-png.flaticon.com/512/5968/5968282.png" alt="Java">
+      <img src="https://cdn-icons-png.flaticon.com/512/6062/6062646.png" alt="Banco de Dados">
+    </div>
+    <h1>Você Dominante em TI</h1>
+    <p>Seu portal para dominar informática, infraestrutura, programação, redes, segurança e muito mais!</p>
+  </header>
+  <nav>
+    <button class="active" onclick="showSection('temas')">Temas</button>
+    <button onclick="showSection('manutencao')">Manutenção & Backup</button>
+    <button onclick="showSection('contato')">Contato</button>
+  </nav>
+  <main>
+    <!-- Temas -->
+    <section id="temas" class="active">
+      <h2>Temas Cobertos</h2>
+      <div class="topics-list">
+        <div class="topic-card">
+          <h3>Informática Básica</h3>
+          <p>Fundamentos de computação, hardware, software e sistemas.</p>
+          <div class="topic-links">
+            <a href="https://www.youtube.com/watch?v=9fNHAD7ZDL4&list=PL-QAz5R5Rlm7wn20xLTIr84gbS2XkzqEZ" target="_blank">Vídeo aulas</a>
+            <a href="https://portal.mec.gov.br/seb/arquivos/pdf/profunc/07_inf_bas.pdf" target="_blank">PDF</a>
+          </div>
+        </div>
+        <div class="topic-card">
+          <h3>Arquitetura de Computadores</h3>
+          <p>Componentes, montagem, manutenção e funcionamento dos computadores.</p>
+          <div class="topic-links">
+            <a href="https://www.youtube.com/watch?v=WVoWDABaXLk&list=PL866_LrQxNVipiEgWtJMK5Fcgc6IBfVvc" target="_blank">Vídeo aulas</a>
+            <a href="https://educapes.capes.gov.br/bitstream/capes/206151/2/apostila%20de%20AOC_Luiz%20S%C3%A9rgio.pdf" target="_blank">PDF</a>
+          </div>
+        </div>
+        <div class="topic-card">
+          <h3>Infraestrutura de Redes</h3>
+          <p>Topologias, cabeamento, protocolos, dispositivos e configuração de redes.</p>
+          <div class="topic-links">
+            <a href="https://www.youtube.com/watch?v=mrcFKp-C1fw&list=PLozhsZB1lLUP8-70SXyscODg5dvIwQRGG" target="_blank">Vídeo aulas</a>
+            <a href="https://www.neutronica.com.br/wp-content/uploads/FIR-Material-v2.0.pdf" target="_blank">PDF</a>
+          </div>
+        </div>
+        <div class="topic-card">
+          <h3>Lógica de Programação</h3>
+          <p>Conceitos de algoritmos, fluxogramas, estruturas de dados e lógica computacional.</p>
+          <div class="topic-links">
+            <a href="https://www.youtube.com/watch?v=8mei6uVttho&list=PLHz_AreHm4dmSj0MHol_aoNYCSGFqvfXV" target="_blank">Vídeo aulas</a>
+            <a href="https://educapes.capes.gov.br/bitstream/capes/560827/2/Apostila%20-%20Curso%20de%20L%C3%B3gica%20de%20Programa%C3%A7%C3%A3o.pdf" target="_blank">PDF</a>
+          </div>
+        </div>
+        <div class="topic-card">
+          <h3>HTML</h3>
+          <p>Estruturação de páginas web.</p>
+          <div class="topic-links">
+            <a href="https://www.youtube.com/watch?v=sj0p9O85AIg&list=PL2Fdisxwzt_cajoGVWTx44wM6Ht09QJ3A" target="_blank">Vídeo aulas</a>
+            <a href="https://www.telecom.uff.br/pet/petws/downloads/apostilas/HTML.pdf" target="_blank">PDF</a>
+          </div>
+        </div>
+        <div class="topic-card">
+          <h3>Java</h3>
+          <p>Fundamentos da linguagem Java, desenvolvimento de sistemas e automações.</p>
+          <div class="topic-links">
+            <a href="https://www.youtube.com/watch?v=sTX0UEplF54&list=PLHz_AreHm4dkI2ZdjTwZA4mPMxWTfNSpR" target="_blank">Vídeo aulas</a>
+            <a href="https://canal.cecierj.edu.br/012016/d7d8367338445d5a49b4d5a49f6ad2b9.pdf" target="_blank">PDF</a>
+          </div>
+        </div>
+        <div class="topic-card">
+          <h3>Python</h3>
+          <p>Fundamentos da linguagem Python, scripts, automações e aplicações.</p>
+          <div class="topic-links">
+            <a href="https://www.youtube.com/watch?v=wC_mwNUT48s&list=PLpaKFn4Q4GMN1A4J1FnhW_anOGt8ug8ip" target="_blank">Vídeo aulas</a>
+            <a href="http://antigo.scl.ifsp.edu.br/portal/arquivos/2016.05.04_Apostila_Python_-_PET_ADS_S%C3%A3o_Carlos.pdf" target="_blank">PDF</a>
+          </div>
+        </div>
+        <div class="topic-card">
+          <h3>CSS</h3>
+          <p>Estilização, layouts, responsividade e web design com CSS.</p>
+          <div class="topic-links">
+            <a href="https://www.youtube.com/watch?v=HtVRRHoASes&list=PL2Fdisxwzt_f5C7Mv0kg1EAHhy2VJLf1c" target="_blank">Vídeo aulas</a>
+            <a href="https://www.telecom.uff.br/pet/petws/downloads/tutoriais/css/css2k80912.pdf" target="_blank">PDF</a>
+          </div>
+        </div>
+        <div class="topic-card">
+          <h3>Programação Web</h3>
+          <p>Publicação, hospedagem e funcionamento de sites na internet.</p>
+          <div class="topic-links">
+            <a href="https://www.youtube.com/watch?v=c45nPVwMVzQ&list=PL2Fdisxwzt_ebZYgPFL8KeWqBhkF1Q8oe" target="_blank">Vídeo aulas</a>
+            <a href="https://educapes.capes.gov.br/bitstream/capes/432205/2/Livro_Desenvolvimento%20para%20Web.pdf" target="_blank">PDF</a>
+          </div>
+        </div>
+        <div class="topic-card">
+          <h3>Segurança da Informação</h3>
+          <p>Antivírus, backups, firewalls, boas práticas e recuperação de dados.</p>
+          <div class="topic-links">
+            <a href="https://www.youtube.com/watch?v=KvPtIl-Gz2E&list=PLHz_AreHm4dlaTyjolzCFC6IjLzO8O0XV" target="_blank">Vídeo aulas</a>
+            <a href="https://siteantigo.fachesf.com.br/pdf/manual_de_seguranca_da_informacao.pdf" target="_blank">PDF</a>
+          </div>
+        </div>
+        <div class="topic-card">
+          <h3>Segurança de Redes</h3>
+          <p>Proteção de redes, criptografia, ataques comuns e defesa.</p>
+          <div class="topic-links">
+            <a href="https://www.youtube.com/watch?v=ByBmknvzi40&list=PLuk2EqaEM-laWA0UPE2w6z-cOIx9_M7-M" target="_blank">Vídeo aulas</a>
+            <a href="https://www.fatecsp.br/dti/tcc/tcc0017.pdf" target="_blank">PDF</a>
+          </div>
+        </div>
+        <div class="topic-card">
+          <h3>Banco de Dados</h3>
+          <p>Modelagem, tipos de bancos, SQL, backups e performance.</p>
+          <div class="topic-links">
+            <a href="https://www.youtube.com/watch?v=Ofktsne-utM&list=PLHz_AreHm4dkBs-795Dsgvau_ekxg8g1r" target="_blank">Vídeo aulas</a>
+            <a href="https://educapes.capes.gov.br/bitstream/capes/564494/2/FASCICULO_Introducao_Banco_Dados_30_08.pdf" target="_blank">PDF</a>
+          </div>
+        </div>
+        <div class="topic-card">
+          <h3>Sistemas Operacionais</h3>
+          <p>Windows, Linux, instalação, configuração, automação e virtualização.</p>
+          <div class="topic-links">
+            <a href="https://www.youtube.com/watch?v=AvF8Gnft78k&list=PL866_LrQxNVhjUCo5b9iQLvgTtC9RoyO1" target="_blank">Vídeo aulas</a>
+            <a href="https://www.ufsm.br/app/uploads/sites/413/2018/12/08_sistemas_operacionais.pdf" target="_blank">PDF</a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Manutenção -->
+    <section id="manutencao">
+      <h2>Manutenção & Backup</h2>
+      <div class="tool-list">
+        <div class="tool-card">
+          <h4>Verificação de Vírus</h4>
+          <ul>
+            <li>Aplicativo: Windows Defender (já integrado no Windows 10/11)</li>
+            <li>Tutorial: <a href="https://www.youtube.com/watch?v=BPjg2pgTiUk" target="_blank">Como utilizar o Windows Defender</a></li>
+          </ul>
+        </div>
+        <div class="tool-card">
+          <h4>Limpeza de Arquivos & Caches</h4>
+          <ul>
+            <li>Aplicativo: Limpeza de Disco (integrado no Windows)</li>
+            <li>Tutorial: <a href="https://www.youtube.com/watch?v=Y9q36B-lkio" target="_blank">Como fazer limpeza de disco no Windows</a></li>
+          </ul>
+        </div>
+        <div class="tool-card">
+          <h4>Backup Automático</h4>
+          <ul>
+            <li>Aplicativo: Backup do Windows (integrado)</li>
+            <li>Tutorial: <a href="https://www.youtube.com/watch?v=XBHtgj_beoI" target="_blank">Como fazer backup automático no Windows</a></li>
+          </ul>
+        </div>
+        <div class="tool-card">
+          <h4>Formatação & Instalação do Windows</h4>
+          <ul>
+            <li>Download: <a href="https://www.microsoft.com/pt-br/software-download/windows11" target="_blank">Windows 11 Oficial</a></li>
+            <li>Tutorial: <a href="https://www.youtube.com/watch?v=TpFOAvepbuw" target="_blank">Como instalar o Windows 11</a></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    <!-- Contato -->
+    <section id="contato">
+      <h2>Contato</h2>
+      <p>Dúvidas, sugestões ou deseja contribuir? Envie um e-mail para <a href="mailto:rayrayllanecunha@gmail.com">rayrayllanecunha@gmail.com</a></p>
+      <div class="contact-social">
+        <span>Instagram:</span>
+        <a href="https://instagram.com/rayycunha_" target="_blank">@rayycunha_</a>
+      </div>
+    </section>
+  </main>
+  <footer>
+    Desenvolvido por Rayllane da Cunha Santos<br>
+    &copy; 2025 Você Dominante em TI
+  </footer>
+  <script>
+    function showSection(id) {
+      var sections = document.querySelectorAll('main section');
+      sections.forEach(function(section){
+        section.classList.remove('active');
+      });
+      document.getElementById(id).classList.add('active');
+      var buttons = document.querySelectorAll('nav button');
+      buttons.forEach(function(btn){
+        btn.classList.remove('active');
+      });
+      var navBtns = Array.from(buttons);
+      var ids = ['temas','manutencao','contato'];
+      navBtns[ids.indexOf(id)].classList.add('active');
+      window.scrollTo({top: 0, behavior: 'smooth'});
+    }
+  </script>
+</body>
+</html>
